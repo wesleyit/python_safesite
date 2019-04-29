@@ -1,0 +1,18 @@
+{% extends 'header.html' %}
+
+{% block content %}
+<div class="container">
+    <h1>Resultados da sua busca:</h1>
+    <br><br>
+    <ul>
+        {% for i in items %}
+            <li>
+                <h3>{{ i[0] }}</h3>
+                <p>{{ i[1] }}</p>
+            </li>
+        {% endfor %}
+    </ul>
+
+
+</div>
+{% endblock %}

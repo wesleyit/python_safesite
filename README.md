@@ -1,2 +1,5 @@
-# python_safesite
-This site has a lot of security breaches to exploit. Do not install on production environments!
+# PYTHON_SAFESITE (WORK IN PROGRESS)
+
+Do not install this application on your server.
+
+It contains a lot of bugs and your server will be compromised.

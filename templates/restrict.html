@@ -1,0 +1,22 @@
+{% extends 'header.html' %}
+
+{% block content %}
+<div class="container">
+    <h1>Acesso Autenticado</h1>
+    <br>
+    <h2>Seu nível de acesso: {{level}}</h2><br>
+    <p>Clique <a href="/logout">aqui</a> para deslogar seu usuário.</p>
+
+    <p>Informações liberadas neste nível de acesso:</p>
+    <ul>
+        {% for i in info %}
+        <li>
+            {{ i[0] }}
+        </li>
+        {% endfor %}
+    </ul>
+    <br>
+    <hr><br>
+
+</div>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'header.html' %}
+
+{% block content %}
+<div class="container">
+    <h1>Uma história de muita segurança</h1>
+
+    <p>Há anos fazemos sistemas web seguros,
+    sempre pensando em proteção.</p>
+
+    <p>Utilizamos termos de uso e privacidade:</p>
+    <ul>
+        {% for f in files %}
+        <li>
+            <a href="/about?doc=./static/legal/{{f}}">{{ f }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+    <br><hr><br>
+    <pre style="font: 'Courier New', Courier, monospace 18pt">{{ doc }}</pre>
+</div>
+{% endblock %}

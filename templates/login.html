@@ -1,0 +1,14 @@
+{% extends 'header.html' %}
+
+{% block content %}
+<br><br>
+    <div class="container">
+        <form class="form-signin" style="width: 40%" action="/login" method="POST">
+            <h2 class="form-signin-heading">Acesso Restrito</h2><br>
+            <h3 style="color: red">{{msg}}</h3><br>
+            <input type="text" name="login" class="form-control" placeholder="login" autofocus><br>
+            <input type="password" name="senha" class="form-control" placeholder="senha"><br>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
+        </form>
+    </div>
+{% endblock %}

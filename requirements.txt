@@ -1,0 +1,12 @@
+# Production
+pip
+flask
+flask_bootstrap4
+sqlalchemy
+
+# Development
+flake8
+isort
+pylama
+pylint
+ipython
