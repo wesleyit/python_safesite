@@ -1,5 +1,6 @@
 # coding=utf-8
 import os
+import time
 import flask as f
 import sqlalchemy as db
 import flask_bootstrap as fb
@@ -15,6 +16,11 @@ def query(text):
     res = conn.execute(text)
     res = res.fetchall()
     return res
+
+
+def execsql(text):
+    conn = engine.connect()
+    return conn.execute(text)
 
 
 @app.route('/', methods=['GET'])
@@ -39,6 +45,22 @@ def get_contact():
     res = query(messages)
     print(res)
     return f.render_template('contact.html', items=res)
+
+
+@app.route('/contact', methods=['POST'])
+def post_contact():
+    n = time.strftime('%Y%m%d%H%M%S', time.gmtime())
+    name = f.request.form['name']
+    message = f.request.form['message']
+    sql = f'''
+    INSERT INTO book(sign_date, name, message)
+    VALUES('{n}', '{name}', '{message}');
+    '''
+    print(sql)
+    execsql(sql)
+    redirect = f.redirect('/contact#Livro')
+    r = f.make_response(redirect)
+    return r
 
 
 @app.route('/signup', methods=['GET'])
