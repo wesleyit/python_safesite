@@ -3,7 +3,44 @@
 {% block content %}
 <div class="container">
     <h1>Fale Conosco</h1>
+    O cliente tem sempre razão, e gostamos muito de ouvir o que pensam.
+    <hr>
+    <script type="text/javascript">
+    function thanks() {
+        name =  document.getElementById("mname").value;
+        document.getElementById("mailform").reset();
+        html = "Obrigado, " + name + ". Sua mensagem foi enviada com sucesso!";
+        alert(html);
+        document.getElementById("msgbox").innerText = html;
+    }
+    </script>
     <h2>E-mail</h2>
+    <p>Preencha o formulário abaixo com seu nome, e-mail e mensagem.</p>
+    <div style="color: darkred; font-weight: bold" id="msgbox"></div><br>
+    <form id="mailform" onsubmit="event.preventDefault();">
+        <input type="text" id="mname" style="width: 400px;" placeholder="Seu Nome"><br>
+        <input type="text" name="email" style="width: 400px;" placeholder="seu@email.aqui"><br>
+        <textarea cols="30" rows="10" name="message"
+        style="width: 400px; height: 200px;">Escreva seu recado aqui</textarea><br>
+        <button type="submit" style="width: 96px;" onclick="thanks();">Enviar</button>
+    </form>
+    <hr>
+
     <h2>Livro de Recados</h2>
+    <p>Deixe seu nome e seu recadinho no nosso livro de recados :D</p>
+    <form method="POST" action="">
+        <input type="text" name="message" style="width: 400px;" placeholder="Seu Recado"><br>
+        <input type="text" name="name" style="width: 300px;" placeholder="Seu Nome">
+        <button type="submit" style="width: 96px;">Escrever</button>
+    </form>
+    <br>
+    <ul class="messages">
+        {% for i in items %}
+        <li>
+            <strong>Em {{ i[0][0:4] }}-{{ i[0][4:6:] }}-{{ i[0][6:8] }}, {{ i[1] }} escreveu:</strong>
+            <p>{{ i[2] }}</p>
+        </li>
+        {% endfor %}
+    </ul>
 </div>
 {% endblock %}

@@ -35,7 +35,10 @@ def get_about():
 
 @app.route('/contact', methods=['GET'])
 def get_contact():
-    return f.render_template('contact.html')
+    messages = f'SELECT * FROM book ORDER BY sign_date DESC;'
+    res = query(messages)
+    print(res)
+    return f.render_template('contact.html', items=res)
 
 
 @app.route('/signup', methods=['GET'])

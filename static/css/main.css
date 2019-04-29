@@ -6,3 +6,18 @@ div.text_reading {
     width: 1080px;
     overflow-x: hidden;
 }
+
+ul.messages li {
+    list-style: none;
+    font-family: 'Comic Sans MS', 'Trebuchet MS';
+    margin-left: 0;
+    padding-left: 0;
+}
+
+ul.messages {
+    border: solid 1px lightgray;
+    padding: 10px;
+    max-width: 1080px;
+    max-height: 400px;
+    overflow-y: scroll;
+}
