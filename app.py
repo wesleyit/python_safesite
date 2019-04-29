@@ -27,7 +27,7 @@ def get_about():
     files = os.listdir('./static/legal/')
     doc = f.request.args.get('doc')
     if doc:
-        doc = open(doc).read()
+        doc = open(doc, encoding='utf8').read()
     else:
         doc = 'Selecione um arquivo para ler nos links acima.'
     return f.render_template('about.html', files=files, doc=doc)

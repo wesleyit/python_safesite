@@ -1,0 +1,8 @@
+div.text_reading {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 16pt;
+    white-space: pre-wrap;
+    display: block;
+    width: 1080px;
+    overflow-x: hidden;
+}

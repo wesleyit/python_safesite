@@ -3,12 +3,18 @@
 <!-- Content Block -->
 {% block page_title %} PyVerySafe Site {% endblock %}
 
+<!-- My CSS -->
+{% block styles %}
+{{super()}}
+<link rel="stylesheet" href="{{url_for('static', filename='css/main.css')}}">
+{% endblock %}
+
 <!-- Content -->
 {% block navbar %}
 <div class="container">
     <div class="jumbotron" style="background-image: url('/static/images/jumbotron_bg.png')">
-        <h1>PY-SITE-SEGURO</h1>
-        <h2>Meu sobrinho disse que tá garantido.</h2>
+        <h1 style="font-weight: bolder">Python SafeSite</h1>
+        <h2>Meu sobrinho disse que tá seguro.</h2>
         <p>(ele fez curso de computação)</p>
     </div>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
