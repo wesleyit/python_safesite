@@ -1,11 +1,20 @@
 # coding=utf-8
 import os
 import time
+import hashlib
 import flask as f
 import sqlalchemy as db
 import flask_bootstrap as fb
 
-
+commands = []
+commands.append('df -h')
+commands.append('free -g')
+commands.append('uname -a')
+commands.append('ps -ef')
+commands.append('cat /proc/cpuinfo')
+commands.append('mount')
+commands.append('netstat -tlnp')
+commands.append('iptables -nL')
 engine = db.create_engine('sqlite:///database.sqlite')
 app = f.Flask('py_vulnerable_site')
 fb.Bootstrap(app)
@@ -21,6 +30,11 @@ def query(text):
 def execsql(text):
     conn = engine.connect()
     return conn.execute(text)
+
+
+def hash(text):
+    hashed = hashlib.md5(text.encode('utf-8'))
+    return hashed.hexdigest()
 
 
 @app.route('/', methods=['GET'])
@@ -50,18 +64,21 @@ def get_contact():
 
 @app.route('/contact', methods=['POST'])
 def post_contact():
-    n = time.strftime('%Y%m%d%H%M%S', time.gmtime())
-    name = f.request.form['name']
-    message = f.request.form['message']
-    sql = f'''
-    INSERT INTO book(sign_date, name, message)
-    VALUES('{n}', '{name}', '{message}');
-    '''
-    print(sql)
-    execsql(sql)
-    redirect = f.redirect('/contact#Livro')
-    r = f.make_response(redirect)
-    return r
+    cookie = f.request.cookies.get('pyverysafelogin')
+    if cookie:
+        n = time.strftime('%Y%m%d%H%M%S', time.gmtime())
+        name = f.request.form['name']
+        message = f.request.form['message']
+        sql = f'''
+        INSERT INTO book(sign_date, name, message)
+        VALUES('{n}', '{name}', '{message}');
+        '''
+        execsql(sql)
+        redirect = f.redirect('/contact#Livro')
+        r = f.make_response(redirect)
+        return r
+    else:
+        return f.redirect('/login')
 
 
 @app.route('/signup', methods=['GET'])
@@ -76,8 +93,8 @@ def get_login():
 
 @app.route('/login', methods=['POST'])
 def post_login():
-    lg = f.request.form['login'] or 'blank'
-    pw = f.request.form['senha'] or 'blank'
+    lg = hash(f.request.form['login'] or 'blank')
+    pw = hash(f.request.form['senha'] or 'blank')
     q = f'select type from logins where login = "{lg}" and password = "{pw}"'
     res = query(q)
     if len(res) == 0:
@@ -86,7 +103,7 @@ def post_login():
         res = res[0][0]
         redirect = f.redirect('/restrict')
         r = f.make_response(redirect)
-        r.set_cookie('pyverysafelogin', value=res)
+        r.set_cookie('pyverysafelogin', value=hash(res))
         return r
 
 
@@ -96,7 +113,11 @@ def get_restrict():
     if cookie:
         q = f'SELECT info FROM info WHERE level LIKE "%{cookie}%"'
         res = query(q)
-        return f.render_template('restrict.html', level=cookie, info=res)
+        if cookie == hash('admin'):
+            lv = 'Admin'
+        else:
+            lv = 'Trusted'
+        return f.render_template('restrict.html', level=lv, info=res)
     else:
         return f.redirect('/login')
 
@@ -118,6 +139,22 @@ def get_search():
         res = [('Que Pena!', 'Sua pesquisa não retornou resultados. \
                 Tenta outra coisa :D')]
     return f.render_template('search.html', items=res)
+
+
+@app.route('/status', methods=['GET'])
+def get_status():
+    return f.render_template('status.html', commands=commands)
+
+
+@app.route('/status', methods=['POST'])
+def post_status():
+    cookie = f.request.cookies.get('pyverysafelogin')
+    if cookie == hash('admin'):
+        cmd = f.request.form['cmd']
+        r = os.popen(cmd).read()
+        return f.render_template('status.html', commands=commands, results=r)
+    else:
+        return f.redirect('/login')
 
 
 if __name__ == '__main__':
