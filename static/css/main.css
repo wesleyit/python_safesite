@@ -42,3 +42,8 @@ div.cmdresults {
     width: 33%;
     float: left;
 }
+
+img.profile {
+    max-width: 300px;
+    max-height: 300px;
+}

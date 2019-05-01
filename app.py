@@ -79,7 +79,8 @@ def post_contact():
         r = f.make_response(redirect)
         return r
     else:
-        return f.redirect('/login')
+        return f.render_template('/login.html',
+                                 msg='Faça login para assinar o livro.')
 
 
 @app.route('/signup', methods=['GET'])
@@ -95,7 +96,8 @@ def post_signup():
     password = f.request.form['senha']
     photo = f.request.files['photo']
     extension = photo.filename.split('.')[-1]
-    photo.save(login + '.' + extension)
+    pname = hash(login) + '.' + extension
+    photo.save('./static/uploads/' + pname)
     sql = f'''
     SELECT login
     FROM logins
@@ -103,8 +105,9 @@ def post_signup():
     '''
     if len(query(sql)) == 0:
         sql = f'''
-        INSERT INTO logins (login, email, type, password)
-        VALUES ('{hash(login)}', '{email}', 'user', '{hash(password)}');
+        INSERT INTO logins (name, picture, login, email, type, password)
+        VALUES ('{name}', '{pname}', '{hash(login)}',
+                '{email}', 'user', '{hash(password)}');
         '''
         execsql(sql)
         msg = f'Usuário criado, {name}!'
@@ -112,6 +115,8 @@ def post_signup():
         sql = f'''
         UPDATE logins
         SET
+            name = '{name}',
+            picture = '{pname}',
             email = '{email}',
             type = 'user',
             password = '{hash(password)}'
@@ -140,6 +145,7 @@ def post_login():
         redirect = f.redirect('/restrict')
         r = f.make_response(redirect)
         r.set_cookie('pyverysafelogin', value=hash(res))
+        r.set_cookie('pyverysafeid', value=lg)
         return r
 
 
@@ -155,7 +161,30 @@ def get_restrict():
             lv = 'Trusted'
         return f.render_template('restrict.html', level=lv, info=res)
     else:
-        return f.redirect('/login')
+        return f.render_template('/login.html',
+                                 msg='Faça login para ver as profecias.')
+
+
+@app.route('/profile', methods=['GET'])
+def get_profile():
+    cookie = f.request.cookies.get('pyverysafeid')
+    if cookie:
+        sql = f'''
+        SELECT picture, name, email, type
+        FROM logins
+        WHERE login = '{cookie}';
+        '''
+        res = query(sql)
+        if len(res) > 0:
+            res = res[0]
+        print(str(res))
+        return f.render_template('profile.html',
+                                 foto='/static/uploads/'+res[0],
+                                 nome=res[1],
+                                 email=res[2],
+                                 grupo=res[3])
+    else:
+        return f.render_template('/login.html', msg='Faça login primeiro.')
 
 
 @app.route('/logout', methods=['GET'])
