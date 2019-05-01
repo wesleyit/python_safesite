@@ -3,6 +3,13 @@
 {% block content %}
 <div class="container">
     <h1>Cadastro</h1>
-    <p class="text-primary">Aqui vai a página de cadastro.</p>
+    <p>Nesta página você pode criar seu login. Caso já
+    esteja logado, suas informações serão atualizadas.</p>
+    <form method=post enctype=multipart/form-data>
+        <input type="text" name="login" class="form-control" placeholder="senha"><br>
+        <input type="password" name="senha" class="form-control" placeholder="senha"><br>
+        <input type=file name=file>
+        <input type=submit value=Upload>
+        </form>
 </div>
 {% endblock %}
