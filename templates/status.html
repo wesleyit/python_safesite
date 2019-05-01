@@ -1,0 +1,17 @@
+{% extends 'header.html' %}
+
+{% block content %}
+<div class="container">
+    <h1>Monitoramento do Servidor</h1>
+    <form method="POST">
+        <p>Selecione um parâmetro de monitoramento para analisar:</p>
+        <select name="cmd">
+            {% for c in commands %}
+                <option>{{ c }}</option>
+            {% endfor %}
+        </select>
+        <button class="btn btn-default" type="submit">Visualizar</button>
+    </form><br><hr><br>
+    <div class="cmdresults">{{ results }}</div>
+</div>
+{% endblock %}

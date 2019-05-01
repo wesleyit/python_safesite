@@ -21,3 +21,14 @@ ul.messages {
     max-height: 400px;
     overflow-y: scroll;
 }
+
+div.cmdresults {
+    font-family: 'Ubuntu Mono', 'Courier New', Courier, monospace;
+    font-size: 16pt;
+    white-space: pre-wrap;
+    display: block;
+    width: 1080px;
+    overflow-x: hidden;
+    color: white;
+    background-color: black;
+}
