@@ -31,11 +31,13 @@ def get_index():
 @app.route('/about', methods=['GET'])
 def get_about():
     files = os.listdir('./static/legal/')
+    files = list(map(lambda i: i.split('.')[0], files))
     doc = f.request.args.get('doc')
     if doc:
-        doc = open(doc, encoding='utf8').read()
+        url = './static/legal/' + doc + '.txt'
+        doc = os.popen(f'cat {url}').read()
     else:
-        doc = 'Selecione um arquivo para ler nos links acima.'
+        doc = 'Selecione um documento para ler nos links acima.'
     return f.render_template('about.html', files=files, doc=doc)
 
 
@@ -43,7 +45,6 @@ def get_about():
 def get_contact():
     messages = f'SELECT * FROM book ORDER BY sign_date DESC;'
     res = query(messages)
-    print(res)
     return f.render_template('contact.html', items=res)
 
 

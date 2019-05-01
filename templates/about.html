@@ -11,7 +11,7 @@
     <ul>
         {% for f in files %}
         <li>
-            <a href="/about?doc=./static/legal/{{f}}">{{ f }}</a>
+            <a href="/about?doc={{f}}">{{ f }}</a>
         </li>
         {% endfor %}
     </ul>
