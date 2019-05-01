@@ -40,7 +40,9 @@ def hash(text):
 
 @app.route('/', methods=['GET'])
 def get_index():
-    return f.render_template('index.html')
+    posts = f'SELECT * FROM posts;'
+    posts = query(posts)
+    return f.render_template('index.html', items=posts)
 
 
 @app.route('/about', methods=['GET'])
@@ -136,7 +138,12 @@ def get_login():
 def post_login():
     lg = hash(f.request.form['login'] or 'blank')
     pw = hash(f.request.form['senha'] or 'blank')
-    q = f'select type from logins where login = "{lg}" and password = "{pw}"'
+    q = f'''
+    SELECT type
+    FROM logins
+    WHERE login = "{lg}"
+    AND password = "{pw}"
+    '''
     res = query(q)
     if len(res) == 0:
         return f.render_template('/login.html', msg='Login incorreto!')
@@ -158,7 +165,7 @@ def get_restrict():
         if cookie == hash('admin'):
             lv = 'Admin'
         else:
-            lv = 'Trusted'
+            lv = 'Comum'
         return f.render_template('restrict.html', level=lv, info=res)
     else:
         return f.render_template('/login.html',
@@ -192,6 +199,7 @@ def get_logout():
     redirect = f.redirect('/login')
     r = f.make_response(redirect)
     r.set_cookie('pyverysafelogin', '', expires=0)
+    r.set_cookie('pyverysafeid', '', expires=0)
     return r
 
 
@@ -223,4 +231,4 @@ def post_status():
 
 
 if __name__ == '__main__':
-    app.run(debug=True, host="0.0.0.0", port=8000)
+    app.run(debug=False, host="0.0.0.0", port=8000)

@@ -4,6 +4,20 @@
 <div class="container">
     <h1>Olá! Vamos Entrando :D</h1>
 
-    <p class="text-primary">Esta é a homepage.</p>
+    <p>Este site está repleto de conteúdo interessante e educativo.
+    O melhor de tudo é que é um site seguro, pode navegar tranquilo.
+    </p>
+    <p>Abaixo temos algumas curiosidades. Fique a vontade para pesquisar
+    usando a busca, ou para navegar nos outros conteúdos. Algumas páginas
+    exigem que você esteja logado, ok? Boa navegação :D
+    </p>
+    <ul>
+        {% for i in items %}
+        <li>
+            <h3>{{ i[0] }}</h3>
+            <p>{{ i[1] }}</p>
+        </li>
+        {% endfor %}
+    </ul>
 </div>
 {% endblock %}
