@@ -32,3 +32,13 @@ div.cmdresults {
     color: white;
     background-color: black;
 }
+
+.w50 {
+    width: 50%;
+    float: left;
+}
+
+.w33 {
+    width: 33%;
+    float: left;
+}

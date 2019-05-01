@@ -3,13 +3,19 @@
 {% block content %}
 <div class="container">
     <h1>Cadastro</h1>
+    <h3 style="color: red">{{msg}}</h3><br>
     <p>Nesta página você pode criar seu login. Caso já
     esteja logado, suas informações serão atualizadas.</p>
-    <form method=post enctype=multipart/form-data>
-        <input type="text" name="login" class="form-control" placeholder="senha"><br>
-        <input type="password" name="senha" class="form-control" placeholder="senha"><br>
-        <input type=file name=file>
-        <input type=submit value=Upload>
-        </form>
+    <p>Digite seu nome, um login bem maneiro, uma senha muito forte
+    e escolha uma selfie bem lindona como foto de perfil.</p>
+    <form method=post enctype="multipart/form-data">
+        <input type="text" name="name" class="form-control" placeholder="Seu Nome" style="width: 99%"><br>
+        <input type="email" name="email" class="form-control" placeholder="seu@email.com.br" style="width: 99%"><br>
+        <input type="text" name="login" class="form-control w33" placeholder="nickname">
+        <input type="password" name="senha" class="form-control w33" placeholder="uma senha segura">
+        <input type="file" name="photo" accept="image/*" class="form-control w33"><br><br><br>
+        <input type="submit" value="Criar login" class="btn">
+    </form>
 </div>
+    <br><hr><br>
 {% endblock %}

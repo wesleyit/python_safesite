@@ -87,6 +87,41 @@ def get_signup():
     return f.render_template('signup.html')
 
 
+@app.route('/signup', methods=['POST'])
+def post_signup():
+    name = f.request.form['name']
+    login = f.request.form['login']
+    email = f.request.form['email']
+    password = f.request.form['senha']
+    photo = f.request.files['photo']
+    extension = photo.filename.split('.')[-1]
+    photo.save(login + '.' + extension)
+    sql = f'''
+    SELECT login
+    FROM logins
+    WHERE login = '{hash(login)}';
+    '''
+    if len(query(sql)) == 0:
+        sql = f'''
+        INSERT INTO logins (login, email, type, password)
+        VALUES ('{hash(login)}', '{email}', 'user', '{hash(password)}');
+        '''
+        execsql(sql)
+        msg = f'Usuário criado, {name}!'
+    else:
+        sql = f'''
+        UPDATE logins
+        SET
+            email = '{email}',
+            type = 'user',
+            password = '{hash(password)}'
+        WHERE login = '{hash(login)}';
+        '''
+        execsql(sql)
+        msg = f'Usuário atualizado, {name}!'
+    return f.render_template('signup.html', msg=msg)
+
+
 @app.route('/login', methods=['GET'])
 def get_login():
     return f.render_template('/login.html', msg='')
