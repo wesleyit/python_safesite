@@ -6,6 +6,7 @@ import flask as f
 import sqlalchemy as db
 import flask_bootstrap as fb
 
+
 commands = []
 commands.append('df -h')
 commands.append('free -g')
