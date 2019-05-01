@@ -61,3 +61,12 @@ lint:
 
 run:
 	@ python app.py
+
+build:
+	@ echo "Building Docker image..."
+	@ docker build --rm -t python_safesite:latest .
+	@ echo "All done!"
+
+start:
+	@ echo "Starting the container..."
+	@ docker run --rm -ti -p 8000:8000 python_safesite:latest
