@@ -82,7 +82,7 @@ def post_contact():
         return r
     else:
         return f.render_template('/login.html',
-                                 msg='Faça login para assinar o livro.')
+                                 msg='Faça login para assinar o mural.')
 
 
 @app.route('/signup', methods=['GET'])
@@ -169,7 +169,7 @@ def get_restrict():
         return f.render_template('restrict.html', level=lv, info=res)
     else:
         return f.render_template('/login.html',
-                                 msg='Faça login para ver as profecias.')
+                                 msg='Conteúdo VIP. Faça login.')
 
 
 @app.route('/profile', methods=['GET'])
@@ -231,4 +231,4 @@ def post_status():
 
 
 if __name__ == '__main__':
-    app.run(debug=False, host="0.0.0.0", port=8000)
+    app.run(debug=True, host="0.0.0.0", port=8000)

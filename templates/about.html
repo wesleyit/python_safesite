@@ -2,12 +2,15 @@
 
 {% block content %}
 <div class="container">
-    <h1>Uma história de muita segurança</h1>
+    <h1>Uma história de sucesso</h1>
 
-    <p>Há anos fazemos sistemas web seguros,
-    sempre pensando em proteção.</p>
+    <p>A Empresa Segura tem uma história de 15 anos no ramo de informações para
+        o mercado financeiro. São milhões de clientes satisfeitos!
+    </p>
 
-    <p>Utilizamos termos de uso e privacidade:</p>
+    <p>Para saber mais sobre as questões jurídicas, leia nossos termos de uso, contratos
+        disclaimer de privacidade clicando em um dos links abaixo:
+    </p>
     <ul>
         {% for f in files %}
         <li>
@@ -17,6 +20,6 @@
     </ul>
     <br><hr><br>
     <div class="text_reading">{{ doc }}</div>
-    <br><hr><br>
+    <br><br><br><br><br>
 </div>
 {% endblock %}

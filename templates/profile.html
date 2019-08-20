@@ -1,14 +1,16 @@
 {% extends 'header.html' %}
 
 {% block content %}
-<br><br>
     <div class="container">
+        <br><br>
         <img class="profile" src="{{ foto }}">
+        <br><br>
         <h2 class="form-signin-heading">{{ nome }}</h2>
+        <br>
         <ul>
             <li>Email: {{ email }}</li>
             <li>Grupo: {{ grupo }}</li>
         </ul>
+        <br><br><br><br><br>
     </div>
-    <br><hr><br>
 {% endblock %}

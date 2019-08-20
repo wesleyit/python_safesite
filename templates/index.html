@@ -2,15 +2,21 @@
 
 {% block content %}
 <div class="container">
-    <h1>Olá! Vamos Entrando :D</h1>
+    <h1>Mercado Financeiro</h1>
+    <p>O portal Empresa Segura é a fonte de notícias e informações sobre
+        o mercado financeiro mais confiável da internet. Estamos há 15 anos
+        fazendo conteúdo de qualidade.</p>
 
-    <p>Este site está repleto de conteúdo interessante e educativo.
-    O melhor de tudo é que é um site seguro, pode navegar tranquilo.
-    </p>
-    <p>Abaixo temos algumas curiosidades. Fique a vontade para pesquisar
-    usando a busca, ou para navegar nos outros conteúdos. Algumas páginas
-    exigem que você esteja logado, ok? Boa navegação :D
-    </p>
+    <p>Contamos com os mais avançados recursos de segurança e privacidade em
+        nossa página. Aproveite para navegar tranquilamente.</p>
+
+    <p>Além dos conteúdos gratuítos, temos também uma área logada para clientes
+        cadastrados que contém notícias exclusivas. Venha fazer parte da nossa
+        comunidade de clientes satisfeitos.</p>
+
+    <br>
+    <h2>Últimas Postagens</h2>
+    <br>
     <ul>
         {% for i in items %}
         <li>
@@ -19,5 +25,6 @@
         </li>
         {% endfor %}
     </ul>
+    <br><br><br><br><br>
 </div>
 {% endblock %}

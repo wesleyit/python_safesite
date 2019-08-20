@@ -1,3 +1,42 @@
+body {
+    background-color: #003;
+}
+
+div.container {
+    background-color: white;
+    border: 1px solid white;
+}
+
+div.container h1 {
+    margin-top: 0.5em;
+}
+
+div.c_header {
+    background-color: #003;
+    padding: 0;
+}
+
+div.jumbotron {
+    margin-bottom: 0;
+}
+
+div.jumbotron h1 {
+    color: white;
+}
+
+div.jumbotron h2 {
+    color: lightgray;
+}
+
+div.jumbotron p {
+    color: lightgray;
+}
+
+nav.darkblue, nav.darkblue * {
+    background-color: #003;
+    color: lightgray;
+}
+
 div.text_reading {
     font-family: 'Times New Roman', Times, serif;
     font-size: 16pt;
