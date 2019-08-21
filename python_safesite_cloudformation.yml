@@ -1,0 +1,80 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: 'This template will setup two EC2 instances and one
+security group for the Web Application Security laboratory.
+The first instance is a Windows Desktop which you can access
+using Remote Desktop (RDP). There you will find tools for
+Penetration Testing. The other instance is a Linux server
+with a Web Application (very vulnerable) running on TCP/8000.'
+
+
+Parameters:
+  KeyName:
+    Description: Name of an existing EC2 KeyPair
+    Type: AWS::EC2::KeyPair::KeyName
+    ConstraintDescription: Must be the name of an existing EC2 KeyPair.
+
+
+Resources:
+  SecLabSG:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupName: SecLabSG
+      GroupDescription: Enable access to server and client
+      Tags:
+      - Key: Name
+        Value: SecLabSG
+      SecurityGroupIngress:
+      - IpProtocol: tcp
+        FromPort: 22
+        ToPort: 22
+        CidrIp: 0.0.0.0/0
+      - IpProtocol: tcp
+        FromPort: 3389
+        ToPort: 3389
+        CidrIp: 0.0.0.0/0
+
+  SecLabSGIngress:
+    Type: AWS::EC2::SecurityGroupIngress
+    DependsOn:
+    - SecLabSG
+    Properties:
+      GroupName: !Ref SecLabSG
+      IpProtocol: -1
+      SourceSecurityGroupId: !GetAtt SecLabSG.GroupId
+
+  SecLabClient:
+    Type: AWS::EC2::Instance
+    DependsOn:
+    - SecLabSGIngress
+    Properties:
+      Tags:
+      - Key: Name
+        Value: SecLabClient
+      InstanceType: t3.medium
+      SecurityGroups:
+      - !Ref SecLabSG
+      KeyName: !Ref KeyName
+      ImageId: ami-0e33254b6346785c5
+
+  SecLabServer:
+    Type: AWS::EC2::Instance
+    DependsOn:
+    - SecLabSGIngress
+    Properties:
+      Tags:
+      - Key: Name
+        Value: SecLabServer
+      InstanceType: t3.medium
+      SecurityGroups:
+      - !Ref SecLabSG
+      KeyName: !Ref KeyName
+      ImageId: ami-01127273b979fe92b
+
+
+Outputs:
+  SecLabServer:
+    Description: Endpoint for Web App on Linux (http port 8000)
+    Value: !GetAtt [SecLabServer, PublicDnsName]
+  SecLabClient:
+    Description: Public DNSName of the Windows client
+    Value: !GetAtt [SecLabClient, PublicDnsName]
