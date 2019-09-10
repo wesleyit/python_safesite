@@ -41,7 +41,7 @@
         {% for i in items %}
         <li>
             <strong>Em {{ i[0][0:4] }}-{{ i[0][4:6:] }}-{{ i[0][6:8] }}, {{ i[1] }} escreveu:</strong>
-            <p>{{ i[2] }}</p>
+            <p>{{ i[2] | safe }}</p>
         </li>
         {% endfor %}
     </ul>
