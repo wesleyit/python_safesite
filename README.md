@@ -16,7 +16,7 @@ make build
 make start
 ```
 
-Then, visit `http://localhost:8000`.
+Then, visit `http://localhost:8080`.
 
 ## Running straight on the machine
 

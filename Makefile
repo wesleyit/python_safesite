@@ -69,4 +69,4 @@ build:
 
 start:
 	@ echo "Starting the container..."
-	@ docker run --rm -ti -p 8000:8000 python_safesite:latest
+	@ docker run --rm -ti -p 8080:8080 python_safesite:latest
