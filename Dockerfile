@@ -39,7 +39,7 @@ ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 RUN make pip
 
 # Do we need some TPC ports?
-EXPOSE 8000
+EXPOSE 8080
 
 # Time to run!
 CMD make run

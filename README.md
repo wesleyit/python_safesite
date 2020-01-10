@@ -19,7 +19,7 @@ make build  # para criar a imagem
 make start  # vai iniciar o container
 ```
 
-Com o container rodando, basta acessar em `http://localhost:8000`.
+Com o container rodando, basta acessar em `http://localhost:8080`.
 
 ## Rodando direto na máquina
 

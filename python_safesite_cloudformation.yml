@@ -4,7 +4,7 @@ security group for the Web Application Security laboratory.
 The first instance is a Windows Desktop which you can access
 using Remote Desktop (RDP). There you will find tools for
 Penetration Testing. The other instance is a Linux server
-with a Web Application (very vulnerable) running on TCP/8000.'
+with a Web Application (very vulnerable) running on TCP/8080.'
 
 
 Parameters:
@@ -73,7 +73,7 @@ Resources:
 
 Outputs:
   SecLabServer:
-    Description: Endpoint for Web App on Linux (http port 8000)
+    Description: Endpoint for Web App on Linux (http port 8080)
     Value: !GetAtt [SecLabServer, PublicDnsName]
   SecLabClient:
     Description: Public DNSName of the Windows client
