@@ -1,7 +1,7 @@
 {% extends 'bootstrap/base.html' %}
 
 <!-- Content Block -->
-{% block page_title %} PyVerySafe Site {% endblock %}
+{% block page_title %} Safe Corp {% endblock %}
 
 <!-- My CSS -->
 {% block styles %}
@@ -13,35 +13,35 @@
 {% block navbar %}
 <div class="container c_header">
     <div class="jumbotron" style="background-image: url('/static/images/jumbotron_bg.png')">
-        <h1 style="font-weight: bolder">EMPRESA SEGURA LTDA.</h1>
-        <h2>Portal de Notícias e Informações</h2>
-        <p>Entregando conteúdo de forma confiável há 15 anos.</p>
+        <h1 style="font-weight: bolder">SAFE CORP</h1>
+        <h2>News and information portal</h2>
+        <p>Reliably delivering content for 15 years.</p>
     </div>
     <nav class="navbar navbar-expand-lg darkblue">
         <div class="collapse navbar-collapse" id="navbarText">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="/">Página Inicial</a>
+                    <a class="nav-link" href="/">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/about">Sobre nós</a>
+                    <a class="nav-link" href="/about">About us</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/contact">Contato</a>
+                    <a class="nav-link" href="/contact">Contact us</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/signup">Cadastro</a>
+                    <a class="nav-link" href="/signup">Sign up</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/restrict">Área Restrita</a>
+                    <a class="nav-link" href="/restrict">Members area</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/profile">Perfil</a>
+                    <a class="nav-link" href="/profile">Profile</a>
                 </li>
             </ul>
             <form class="form-inline" method="GET" action="/search">
-                <input class="form-control" name="text" type="search" placeholder="Buscar posts">&nbsp;
-                <button class="btn btn-default" type="submit">Buscar</button>
+                <input class="form-control" name="text" type="search" placeholder="Search posts">&nbsp;
+                <button class="btn btn-default" type="submit">Find</button>
             </form>
         </div>
     </nav>

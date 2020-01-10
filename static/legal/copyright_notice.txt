@@ -1,0 +1,86 @@
+Copyright notice
+
+1.	Credit
+1.1	This document was created using a template from SEQ Legal (https://seqlegal.com).
+You must retain the above credit. Use of this document without the credit is an infringement of copyright. However, you can purchase from us an equivalent document that does not include the credit.
+2.	Copyright notice
+2.1	Copyright (c) [year(s) of first publication] [full name].
+2.2	Subject to the express provisions of this notice:
+(a)	we, together with our licensors, own and control all the copyright and other intellectual property rights in our website and the material on our website; and
+(b)	all the copyright and other intellectual property rights in our website and the material on our website are reserved.
+3.	Copyright licence
+3.1	You may:
+(a)	view pages from our website in a web browser;
+(b)	download pages from our website for caching in a web browser;
+(c)	print pages from our website;
+(d)	[stream audio and video files from our website]; and
+(e)	[use [our website services] by means of a web browser],
+	subject to the other provisions of this notice.
+3.2	Except as expressly permitted by the other provisions of this notice, you must not download any material from our website or save any such material to your computer.
+3.3	You may only use our website for [your own personal and business purposes], and you must not use our website for any other purposes.
+3.4	Except as expressly permitted by this notice, you must not edit or otherwise modify any material on our website.
+3.5	Unless you own or control the relevant rights in the material, you must not:
+(a)	republish material from our website (including republication on another website);
+(b)	sell, rent or sub-license material from our website;
+(c)	show any material from our website in public;
+(d)	exploit material from our website for a commercial purpose; or
+(e)	redistribute material from our website, save to the extent expressly permitted by this notice.
+4.	Acceptable use
+4.1	You must not:
+(a)	use our website in any way or take any action that causes, or may cause, damage to the website or impairment of the performance, availability or accessibility of the website;
+(b)	use our website in any way that is unlawful, illegal, fraudulent or harmful, or in connection with any unlawful, illegal, fraudulent or harmful purpose or activity;
+(c)	use our website to copy, store, host, transmit, send, use, publish or distribute any material which consists of (or is linked to) any spyware, computer virus, Trojan horse, worm, keystroke logger, rootkit or other malicious computer software; or
+(d)	conduct any systematic or automated data collection activities (including without limitation scraping, data mining, data extraction and data harvesting) on or in relation to our website without our express written consent.
+5.	Report abuse
+5.1	If you learn of any unlawful material or activity on our website, or any material or activity that breaches this notice, please let us know.
+5.2	You can let us know about any such material or activity [by email or using our abuse reporting form].
+6.	Enforcement of copyright
+6.1	We take the protection of our copyright very seriously.
+6.2	If we discover that you have used our copyright materials in contravention of the licence set out in this notice, we may bring legal proceedings against you, seeking monetary damages and/or an injunction to stop you using those materials. You could also be ordered to pay legal costs.
+7.	Permissions
+7.1	You may request permission to use the copyright materials on our website by [writing to us by email or post, using the contact details published on the website].
+
+
+Free copyright notice: drafting notes
+This is a copyright notice (or copyright statement) template, designed for use on a website.
+Copyright is one of the cornerstone intellectual property rights. Although websites as such do not attract copyright protection, they are made up of works that do (literary works, graphical works and so on).
+Using this template, the website operator may assert ownership of copyright in the website, and set out the basis upon which others may use the website.
+In addition, the notice incorporates special provisions relating to copyright infringement and copyright-related notifications.
+The template may be used on its own, or it may form part of a website's terms and conditions of use.
+Section 1: Credit
+Section: Free documents licensing warning
+Optional element. Although you need to retain the credit, you should remove the inline copyright warning from this document before use.
+Section 2: Copyright notice
+Section 2.1
+What was the year of first publication of the relevant copyright material (or the range of years)?
+Who is the principal owner of copyright in the website?
+Section 3: Copyright licence
+Optional element.
+The scope of the licence to use will vary with each site. Consider carefully exactly what your users should be allowed to do with your website and material on your website.
+Section 3.1
+Will audio and/or video files be published on the website?
+Will the website make available any dynamic services to users?
+Describe the website services in question.
+Section 3.2
+Optional element.
+Section 3.3
+Optional element.
+For what purposes may the website be used?
+Section 3.4
+Optional element.
+Section 3.5
+Optional element.
+Section 4: Acceptable use
+Optional element.
+Section 5: Report abuse
+Will there be a special procedure (which could be as simple as a designated email address) for reporting abusive conduct or materials on the website?
+Websites that allow the publication of user generated content should incorporate an abuse reporting procedure. The existence of such a procedure may help the website operator to take advantage of certain defences that may be available in respect of such user generated content. For instance, the website operator defence set out in Section 5 of the Defamation Act 2013 and elaborated in the Defamation (Operators of Websites) Regulations 2013 will only be available where the operator has responded to a notice of complaint sent by the complainant, a process which may be made simpler by the use of a dedicated communications channel. The guidance notes accompanying the legislation have this to say on the subject: "The Government encourages operators to set up and publicise a designated email address for this purpose as a matter of good practice, which we encourage complainants to use. Operators may also wish to provide an online form that complainants can use to submit a Notice of Complaint".
+Section 5.2
+Optional element.
+How can users report unlawful and unwanted materials and activities on the website?
+Section 6: Enforcement of copyright
+Optional element.
+Section 7: Permissions
+Optional element.
+Section 7.1
+How should a person go about requesting permission to use copyright materials that are published on the website?

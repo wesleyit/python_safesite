@@ -2,45 +2,45 @@
 
 {% block content %}
 <div class="container">
-    <h1>Fale Conosco</h1>
-    O cliente tem sempre razão, e gostamos muito de ouvir o que pensam.
+    <h1>Contact us</h1>
+    The customer is always right.
     <hr>
     <script type="text/javascript">
     function thanks() {
         name =  document.getElementById("mname").value;
         document.getElementById("mailform").reset();
-        html = "Obrigado, " + name + ". Sua mensagem foi enviada com sucesso!";
+        html = "Thanks, " + name + ". Your message has been delivered!";
         document.getElementById("msgbox").innerHTML = html;
     }
     </script>
     <h2>E-mail</h2>
-    <p>Preencha o formulário abaixo com seu nome, e-mail e mensagem.</p>
+    <p>Fill up the following form to send us an e-mail.</p>
     <div style="color: darkred; font-weight: bold" id="msgbox"></div><br>
     <form id="mailform" onsubmit="event.preventDefault();">
         <input type="text" id="mname" style="width: 400px;"
-        placeholder="Seu Nome" class="form-control"><br>
+        placeholder="Name" class="form-control"><br>
         <input type="text" name="email" style="width: 400px;"
-        placeholder="seu@email.aqui" class="form-control"><br>
+        placeholder="your@email.here" class="form-control"><br>
         <textarea cols="30" rows="10" name="message" class="form-control"
-        style="width: 400px; height: 200px;">Escreva seu recado aqui</textarea><br>
-        <button type="submit"  class="btn" style="width: 96px;" onclick="thanks();">Enviar</button>
+        style="width: 400px; height: 200px;">Write your message here.</textarea><br>
+        <button type="submit"  class="btn" style="width: 96px;" onclick="thanks();">Send</button>
     </form>
     <hr>
     <br><br><br>
-    <h2 id="Livro">Mural de Recados</h2>
-    <p>Faça como nossos clientes satisfeitos, deixe seu nome e sua mensagem em nosso livro de recados</p>
+    <h2 id="Livro">Guestbook</h2>
+    <p>Leave us a message.</p>
     <form method="POST">
         <input type="text" name="message" style="width: 400px;"
-        class="form-control" placeholder="Seu Recado"><br>
+        class="form-control" placeholder="Message"><br>
         <input type="text" name="name" style="width: 400px;"
-        class="form-control" placeholder="Seu Nome"><br>
-        <button type="submit" class="btn" style="width: 96px;">Escrever</button>
+        class="form-control" placeholder="Name"><br>
+        <button type="submit" class="btn" style="width: 96px;">Write</button>
     </form>
     <br>
     <ul class="messages">
         {% for i in items %}
         <li>
-            <strong>Em {{ i[0][0:4] }}-{{ i[0][4:6:] }}-{{ i[0][6:8] }}, {{ i[1] }} escreveu:</strong>
+            <strong>{{ i[0][0:4] }}-{{ i[0][4:6:] }}-{{ i[0][6:8] }}, {{ i[1] }} wrote:</strong>
             <p>{{ i[2] | safe }}</p>
         </li>
         {% endfor %}

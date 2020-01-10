@@ -2,12 +2,12 @@
 
 {% block content %}
 <div class="container">
-    <h1>Acesso Autenticado</h1>
+    <h1>Members Area</h1>
     <br>
-    <h2>Seu nível de acesso: {{level}}</h2><br>
-    <p>Clique <a href="/logout">aqui</a> para deslogar seu usuário.</p>
+    <h2>Your access level: {{level}}</h2><br>
+    <p>Click <a href="/logout">here</a> to logout.</p>
 
-    <p>Informações liberadas neste nível de acesso:</p>
+    <p>Information available for you according to your access level:</p>
     <ul>
         {% for i in info %}
         <li>

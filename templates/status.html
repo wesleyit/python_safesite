@@ -2,15 +2,15 @@
 
 {% block content %}
 <div class="container">
-    <h1>Monitoramento do Servidor</h1>
+    <h1>Server Status</h1>
     <form method="POST">
-        <p>Selecione um parâmetro de monitoramento para analisar:</p>
+        <p>Select a command do run and analyse the server health:</p>
         <select name="cmd">
             {% for c in commands %}
                 <option>{{ c }}</option>
             {% endfor %}
         </select>
-        <button class="btn btn-default" type="submit">Visualizar</button>
+        <button class="btn btn-default" type="submit">Show</button>
     </form><br><hr><br>
     <div class="cmdresults">{{ results }}</div>
     <br><br><br><br><br>

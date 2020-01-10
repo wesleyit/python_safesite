@@ -1,43 +1,38 @@
 # Python SafeSite
 
-Esta aplicação foi desenvolvida com o propósito de
-treinar suas habilidades em penetration testing.
+This application was developed for the purpose of training your penetration testing skills.
+It is a simple site that can be explored in many different ways.
+It was developed in Python with Flask and SQLite.
 
-É um site simples que pode ser explorado de diversas
-formas diferentes. Foi desenvolvido em Python com Flask
-e SQLite.
+## Running inside Docker
 
-## Rodando dentro do Docker
-
-Para rodar dentro do Docker, tenha o Docker instalado, o
-GNU Make e o Git.
+To run inside Docker, have Docker installed,
+GNU Make and Git.
 
 ```bash
 git clone https://github.com/wesleyit/python_safesite.git
 cd python_safesite
-make build  # para criar a imagem
-make start  # vai iniciar o container
+make build
+make start
 ```
 
-Com o container rodando, basta acessar em `http://localhost:8000`.
+Then, visit `http://localhost:8000`.
 
-## Rodando direto na máquina
+## Running straight on the machine
 
-Para os corajosos, é possível rodar sem container.
-Para isso, é necessário ter o Python3 instalado,
-o Venv, o PIP, o Git e o GNU Make. O app foi testado
-apenas no Linux, não sabemos se funciona diretamente
-no Mac OS ou Windows, ok?
+For the brave ones, it is possible to run without a container.
+This requires Python3, Venv, PIP, Git and GNU Make.
+The app has been tested only on Linux, we don't know if it works directly on Mac OS or Windows, OK?
 
 ```bash
 git clone https://github.com/wesleyit/python_safesite.git
 cd python_safesite
-make venv  # para criar o virtual env
-source env/bin/activate  # chaveando para o venv
-make pip  # baixar as dependências do Python3
-make run  # iniciar em modo direto
+make venv
+source env/bin/activate
+make pip
+make run
 ```
 
 ## Disclaimer
 
-> Esta aplicação tem falhas de segurança e pode comprometer o servidor onde for instalada. Cuidado.
+> This application comes with security breaches and may compromise the server where it is installed. Watch out and be careful.

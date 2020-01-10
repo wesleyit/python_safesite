@@ -2,15 +2,12 @@
 
 {% block content %}
 <div class="container">
-    <h1>Uma história de sucesso</h1>
+    <h1>A success story</h1>
 
-    <p>A Empresa Segura tem uma história de 15 anos no ramo de informações para
-        o mercado financeiro. São milhões de clientes satisfeitos!
-    </p>
+    <p>The Secure Company has a 15-year history in the information business for the financial market. There are millions of satisfied customers!</p>
 
-    <p>Para saber mais sobre as questões jurídicas, leia nossos termos de uso, contratos
-        disclaimer de privacidade clicando em um dos links abaixo:
-    </p>
+    <p>To learn more about legal questions, read our terms of use, agreements, and Privacy disclaimer by clicking the links below:</p>
+
     <ul>
         {% for f in files %}
         <li>
@@ -18,8 +15,11 @@
         </li>
         {% endfor %}
     </ul>
+
     <br><hr><br>
+
     <div class="text_reading">{{ doc }}</div>
+
     <br><br><br><br><br>
 </div>
 {% endblock %}

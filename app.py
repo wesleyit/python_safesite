@@ -54,7 +54,7 @@ def get_about():
         url = './static/legal/' + doc + '.txt'
         doc = os.popen(f'cat {url}').read()
     else:
-        doc = 'Selecione um documento para ler nos links acima.'
+        doc = 'Select a document to read.'
     return f.render_template('about.html', files=files, doc=doc)
 
 
@@ -82,7 +82,7 @@ def post_contact():
         return r
     else:
         return f.render_template('/login.html',
-                                 msg='Faça login para assinar o mural.')
+                                 msg='Sign in to leave a message.')
 
 
 @app.route('/signup', methods=['GET'])
@@ -112,7 +112,7 @@ def post_signup():
                 '{email}', 'user', '{hash(password)}');
         '''
         execsql(sql)
-        msg = f'Usuário criado, {name}!'
+        msg = f'User created, {name}!'
     else:
         sql = f'''
         UPDATE logins
@@ -125,7 +125,7 @@ def post_signup():
         WHERE login = '{hash(login)}';
         '''
         execsql(sql)
-        msg = f'Usuário atualizado, {name}!'
+        msg = f'User updated, {name}!'
     return f.render_template('signup.html', msg=msg)
 
 
@@ -146,7 +146,7 @@ def post_login():
     '''
     res = query(q)
     if len(res) == 0:
-        return f.render_template('/login.html', msg='Login incorreto!')
+        return f.render_template('/login.html', msg='Wrong credentials!')
     else:
         res = res[0][0]
         redirect = f.redirect('/restrict')
@@ -165,11 +165,11 @@ def get_restrict():
         if cookie == hash('admin'):
             lv = 'Admin'
         else:
-            lv = 'Comum'
+            lv = 'User'
         return f.render_template('restrict.html', level=lv, info=res)
     else:
         return f.render_template('/login.html',
-                                 msg='Conteúdo VIP. Faça login.')
+                                 msg='Members only area, access restricted.')
 
 
 @app.route('/profile', methods=['GET'])
@@ -191,7 +191,7 @@ def get_profile():
                                  email=res[2],
                                  grupo=res[3])
     else:
-        return f.render_template('/login.html', msg='Faça login primeiro.')
+        return f.render_template('/login.html', msg='Login required.')
 
 
 @app.route('/logout', methods=['GET'])
@@ -206,11 +206,11 @@ def get_logout():
 @app.route('/search', methods=['GET'])
 def get_search():
     search = f.request.args.get('text')
-    search = f'SELECT * FROM posts WHERE Content LIKE "%{search}%";'
+    search = f'SELECT * FROM posts WHERE Title LIKE "%{search}%";'
     res = query(search)
     if len(res) == 0:
-        res = [('Que Pena!', 'Sua pesquisa não retornou resultados. \
-                Tenta outra coisa :D')]
+        res = [('Your search did not return results.',
+                'Try searching something else.')]
     return f.render_template('search.html', items=res)
 
 

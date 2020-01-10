@@ -1,0 +1,44 @@
+Legal information disclaimer
+
+1.	Credit
+1.1	This document was created using a template from SEQ Legal (https://seqlegal.com).
+You must retain the above credit. Use of this document without the credit is an infringement of copyright. However, you can purchase from us an equivalent document that does not include the credit.
+2.	No advice
+2.1	Our website contains general legal information.
+2.2	The legal information is not advice and should not be treated as such.
+3.	No warranties
+3.1	The legal information on our website is provided without any representations or warranties, express or implied.
+3.2	Without limiting the scope of Section 3.1, we do not warrant or represent that the legal information on this website:
+(a)	will be constantly available, or available at all; or
+(b)	is true, accurate, complete, current or non-misleading.
+4.	No lawyer-client relationship
+4.1	No lawyer-client, solicitor-client or attorney-client relationship shall be created through the use of our website.
+5.	Interactive features
+5.1	Our website includes interactive features that allow users to communicate with us.
+5.2	You acknowledge that, because of the limited nature of communication through our website's interactive features, any assistance you may receive using any such features is likely to be incomplete and may even be misleading.
+5.3	Any assistance you may receive using any our website's interactive features does not constitute specific advice and accordingly should not be relied upon without further independent confirmation.
+6.	Professional legal assistance and advice
+6.1	You must not rely on the legal information on our website as an alternative to legal advice from your lawyer or other professional legal services provider.
+6.2	If you have any specific questions about any legal matter, you should consult your lawyer or other professional legal services provider.
+6.3	You should never delay seeking legal advice, disregard legal advice, or commence or discontinue any legal action because of information on our website.
+7.	Limits upon exclusions of liability
+7.1	Nothing in this disclaimer will:
+(a)	limit or exclude any liability for death or personal injury resulting from negligence;
+(b)	limit or exclude any liability for fraud or fraudulent misrepresentation;
+(c)	limit any liabilities in any way that is not permitted under applicable law; or
+(d)	exclude any liabilities that may not be excluded under applicable law.
+
+
+Free legal information disclaimer: drafting notes
+This is a free version of our legal information disclaimer template. The only difference is the inclusion of an SEQ Legal credit.
+This disclaimer has been created for websites that publish legal information - eg the websites of lawyers or other legal services organisations.
+Issues covered include: (i) the distinction between legal information and advice; (ii) the question of when to obtain professional assistance; and (iii) warranty exclusions relating to information.
+As with all limitations and exclusions of liability, the enforceability of the document may be open to question.
+Section 1: Credit
+Section: Free documents licensing warning
+Optional element. Although you need to retain the credit, you should remove the inline copyright warning from this document before use.
+Section 5: Interactive features
+Does the website include any interactive features through which information or assistance may be provided to users?
+Section 7: Limits upon exclusions of liability
+Section 7.1
+Do not delete this provision (except upon legal advice). Without this provision, the specific limitations and exclusions of liability in the document are more likely to be unenforceable.
